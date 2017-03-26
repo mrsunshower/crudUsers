@@ -32,20 +32,15 @@ public class HomeController {
         pagedListHolder.setPageSize(20);
         model.addObject("maxPages", pagedListHolder.getPageCount());
 
-        if(page==null || page < 1 || page > pagedListHolder.getPageCount())page=1;
-
+        if (page == null || page < 1 || page > pagedListHolder.getPageCount()) page=1;
 
         model.addObject("page", page);
-        if(page == null || page < 1 || page > pagedListHolder.getPageCount()){
-            pagedListHolder.setPage(0);
-            model.addObject("userList", pagedListHolder.getPageList());
-        }
-        else if(page <= pagedListHolder.getPageCount()) {
-            pagedListHolder.setPage(page-1);
-            model.addObject("userList", pagedListHolder.getPageList());
-        }
+        pagedListHolder.setPage(page-1);
+        model.addObject("userList", pagedListHolder.getPageList());
+
         return model;
     }
+
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView search() {
         ModelAndView model =  new ModelAndView("UserSearch");

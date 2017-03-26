@@ -52,11 +52,11 @@ public class UserDAOImpl implements UserDAO {
 		}
 
 		//System.out.println(listResult.size());
-		if (!listResult.isEmpty()) {
-			return listResult;
+		if (listResult.isEmpty()) {
+			return null;
 		}
 
-		return null;
+		return listResult;
 	}
 
 	@Override
@@ -68,11 +68,11 @@ public class UserDAOImpl implements UserDAO {
 		@SuppressWarnings("unchecked")
 		List<EntityUser> listUser = (List<EntityUser>) query.list();
 
-		if (listUser != null && !listUser.isEmpty()) {
-			return listUser.get(0);
+		if (listUser == null || listUser.isEmpty()) {
+			return null;
 		}
 
-		return null;
+		return listUser.get(0);
 	}
 
 }
